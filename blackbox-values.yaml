@@ -83,8 +83,8 @@ image:
   #   - myRegistrKeySecretName
 
 ## User and Group to run blackbox-exporter container as
-#runAsUser: 1000
-#runAsGroup: 1000
+runAsUser: 1001070000
+runAsGroup: 1001070000
 readOnlyRootFilesystem: true
 runAsNonRoot: true
 allowPrivilegeEscalation: false
