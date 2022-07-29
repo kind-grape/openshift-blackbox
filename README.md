@@ -9,12 +9,30 @@ oc new-app docker.io/prom/blackbox-exporter -e DATA_SOURCE_NAME="<username>:<pas
 To be continued.. 
 https://github.com/prometheus/blackbox_exporter
 
-Run the docker 
-```
-docker run --rm -d -p 9115:9115 --name blackbox_exporter -v `pwd`:/config prom/blackbox-exporter:master --config.file=/config/blackbox.yml
-```
 
-To check the result for a particular endpoint
+
+
+- Pull the docker prometheus blackbox exporter image from public repo 
+  ```
+  docker pull prom/blackbox-exporter
+  ```
+- Tag the image 
+  ```
+  docker tag prom/blackbox-exporter registry.ford.com/rpeng14/prom
+  ```
+- log in to the openshift private registry
+  ```
+  docker login registry.ford.com
+  ```
+- Create the image repo in the target private registry and organization
+- push the image to the private registry 
+  ```
+  docker push registry.ford.com/rpeng14/prom/blackbox-exporter
+  ```
+
+Once the image tag has been pushed, modify the deployment helm values as shown in the repo 
+
+Deploy the helm chart with the custom values 
 ```
-curl -k http://localhost:9115/probe?target=google.com&module=http_2xx
+helm install blackbox-test prometheus-community/prometheus-blackbox-exporter -f .\blackbox-values.yaml
 ```
