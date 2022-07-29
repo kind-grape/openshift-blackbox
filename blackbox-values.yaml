@@ -71,8 +71,8 @@ strategy:
   type: RollingUpdate
 
 image:
-  repository: prom/blackbox-exporter
-  tag: v0.20.0
+  repository: registry.ford.com/rpeng14/prom/blackbox-exporter
+  tag: latest
   pullPolicy: IfNotPresent
 
   ## Optionally specify an array of imagePullSecrets.
